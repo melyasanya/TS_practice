@@ -1,11 +1,38 @@
-const btn = document.querySelector("button")!;
-const inp1 = document.getElementById("num1")! as HTMLInputElement;
-const inp2 = document.getElementById("num2")! as HTMLInputElement;
-
-function add(num1: number, num2: number) {
-  return num1 + num2;
+function getPromise(): Promise<Array<string | number>> {
+  return new Promise((resolve) => {
+    resolve(["Text", 50]);
+  });
 }
 
-btn.addEventListener("click", function () {
-  console.log(add(+inp1.value, +inp2.value));
+getPromise().then((data) => {
+  console.log(data);
 });
+
+///////////////////////////////////////////////////////////
+
+type AllType = {
+  name: string;
+  position: number;
+  color: string;
+  weight: number;
+};
+
+function compare(
+  top: Pick<AllType, "name" | "color">,
+  bottom: Pick<AllType, "position" | "weight">
+): AllType {
+  return {
+    name: top.name,
+    color: top.color,
+    position: bottom.position,
+    weight: bottom.weight,
+  };
+}
+
+///////////////////////////////////////////////////////////
+
+function merge<T, U>(objA: T, objB: U) {
+  return Object.assign({}, objA, objB);
+}
+
+///////////////////////////////////////////////////////////
